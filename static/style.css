@@ -1,0 +1,279 @@
+body {
+  background: #f6f8fa;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 32px 40px 24px 40px;
+}
+h2 {
+  color: #24292f;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  margin-bottom: 14px;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+}
+a {
+  color: #0969da;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+  font-weight: 500;
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+a:hover {
+  background: #eaeef2;
+  color: #0a3069;
+}
+.folder::before {
+  content: "📁";
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+.file::before {
+  content: "📄";
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+.breadcrumb {
+  font-size: 0.98em;
+  margin-bottom: 18px;
+  color: #57606a;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.breadcrumb a {
+  color: #57606a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.breadcrumb a:hover {
+  color: #0969da;
+  text-decoration: underline;
+}
+.breadcrumb span {
+  color: #24292f;
+  font-weight: 600;
+}
+.file-repository {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.repository-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e1e4e8;
+    margin-bottom: 20px;
+}
+.repository-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #24292e;
+    margin: 0;
+}
+.path-navigation {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #586069;
+    background-color: #f6f8fa;
+    padding: 12px 16px;
+    border-radius: 6px;
+}
+.path-separator {
+    margin: 0 8px;
+    color: #586069;
+}
+.path-link {
+    color: #0366d6;
+    text-decoration: none;
+    cursor: pointer;
+}
+.path-link:hover {
+    text-decoration: underline;
+}
+.current-path {
+    color: #24292e;
+    font-weight: 500;
+}
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.file-table th {
+    background-color: #f6f8fa;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #24292e;
+    border-bottom: 1px solid #e1e4e8;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.file-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eaecef;
+    vertical-align: middle;
+    word-break: normal;
+    white-space: normal;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+.file-table tr:last-child td {
+    border-bottom: none;
+}
+.file-table tr:hover {
+    background-color: #f6f8fa;
+}
+.file-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.folder-icon {
+    color: #79b8ff;
+}
+.file-icon-default {
+    color: #6a737d;
+}
+.file-name {
+    display: flex;
+    align-items: center;
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: 500;
+    word-break: normal;
+    white-space: normal;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+.file-name:hover {
+    text-decoration: underline;
+}
+.folder-name {
+    color: #0366d6;
+    font-weight: 600;
+}
+.file-size {
+    color: #586069;
+    font-size: 12px;
+    min-width: 80px;
+}
+.file-date {
+    color: #586069;
+    font-size: 12px;
+    min-width: 120px;
+}
+.folder-row {
+    background-color: rgba(3, 102, 214, 0.05);
+}
+.folder-row:hover {
+    background-color: rgba(3, 102, 214, 0.1);
+}
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6a737d;
+}
+.empty-state-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: #d1d5da;
+}
+.empty-state-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #24292e;
+}
+@media (max-width: 700px) {
+  .container {
+    max-width: 98vw;
+    padding: 18px 6vw 12px 6vw;
+  }
+  h2 {
+    font-size: 1.1em;
+  }
+  a {
+    font-size: 1em;
+    padding: 7px 8px;
+  }
+}
+@media (max-width: 400px) {
+  .container {
+    padding: 8px 2vw 8px 2vw;
+  }
+  h2 {
+    font-size: 1em;
+  }
+}
+@media (max-width: 768px) {
+    .file-repository {
+        padding: 10px;
+    }
+    .repository-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .file-table th,
+    .file-table td {
+        padding: 8px 8px;
+    }
+    .file-date,
+    .file-size {
+        min-width: 60px;
+    }
+}
+@media (max-width: 480px) {
+    .file-table th:nth-child(3),
+    .file-table td:nth-child(3) {
+        display: none;
+    }
+    .file-table th,
+    .file-table td {
+        font-size: 12px;
+        padding: 6px 4px;
+    }
+}

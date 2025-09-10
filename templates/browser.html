@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="file-repository">
+    <nav class="path-navigation">
+      <a class="path-link" href="{{ url_for('home') }}">{{ title }}</a>  
+      <span class="path-separator">/</span>  
+      <a class="path-link" href="{{ url_for('browse', root_idx=root_idx, subpath='') }}">{{ roots[root_idx].name }}</a>
+      {% if rel_path %}
+        {% set rel_path_str = rel_path|string %}
+        {% set parts = rel_path_str.split('/') %}
+        {% for i in range(parts|length) %}
+          <span class="path-separator">/</span>
+          {% set sub = '/'.join(parts[:i+1]) %}
+          {% if not loop.last %}
+            <a class="path-link" href="{{ url_for('browse', root_idx=root_idx, subpath=sub) }}">{{ parts[i] }}</a>
+          {% else %}
+            <span class="current-path">{{ parts[i] }}</span>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </nav>
+    <table class="file-table">
+      <tbody>
+        {% if entries|length == 0 %}
+        <tr>
+          <td colspan="3" class="empty-state">
+            <div class="empty-state-icon">📁</div>
+            <div class="empty-state-title">Nessun file o cartella</div>
+          </td>
+        </tr>
+        {% endif %}
+        {% for name, is_dir, size, mtime in entries %}
+        <tr class="{{ 'folder-row' if is_dir else '' }}">
+          <td>
+            {% if is_dir %}
+              <a class="file-name folder-name" href="{{ url_for('browse', root_idx=root_idx, subpath=(rel_path ~ '/' ~ name if rel_path else name)) }}">
+                <span class="file-icon folder-icon">📁</span>{{ name }}/
+              </a>
+            {% else %}
+              <a class="file-name" href="{{ url_for('download_file', root_idx=root_idx, subpath=(rel_path ~ '/' ~ name if rel_path else name)) }}">
+                <span class="file-icon file-icon-default">📄</span>{{ name }}
+              </a>
+            {% endif %}
+          </td>
+          <td class="file-size">{% if not is_dir %}{{ size }}{% else %}-{% endif %}</td>
+          <td class="file-date">{{ mtime }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
