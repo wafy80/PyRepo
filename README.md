@@ -27,7 +27,7 @@
    ```
 
 3. **Configure your roots**
-   Edit `pyrepo.ini` to set your root directories and desired port.
+   Rename `pyrepo_sample.ini` to `pyrepo.ini` ad edit it to set your root directories and desired port.
 
 4. **Run the server**
    ```bash
