@@ -1,4 +1,4 @@
-from flask import Flask, request, send_from_directory, render_template, abort, redirect, url_for
+from flask import Flask, send_from_directory, render_template, abort
 import os
 import datetime
 import configparser
@@ -8,6 +8,7 @@ config.read('pyrepo.ini')
 
 BASE_DIRS = [d.strip() for d in config.get('pyrepo', 'base_dirs', fallback=os.environ.get("PYREPO_BASE_DIR", os.path.abspath("files"))).split(',')]
 PORT = config.getint('pyrepo', 'port', fallback=int(os.environ.get("PYREPO_PORT", 5000)))
+HOST = config.get('pyrepo', 'host', fallback=os.environ.get("PYREPO_HOST", "::"))
 TITLE = config.get('pyrepo', 'title', fallback= os.environ.get("PYREPO_TITLE", "PyRepo"))
 
 roots = []
@@ -87,4 +88,4 @@ def download_file(root_idx, subpath):
     return send_from_directory(dir_name, file_name, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='::', port=PORT)
+    app.run(host=HOST, port=PORT)

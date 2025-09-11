@@ -265,6 +265,17 @@ a:hover {
     .file-size {
         min-width: 60px;
     }
+    .path-navigation {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .path-link, .current-path {
+        font-size: 13px;
+        padding: 4px 6px;
+    }
+    .path-separator {
+        margin: 0 4px;
+    }
 }
 @media (max-width: 480px) {
     .file-table th:nth-child(3),
@@ -275,5 +286,129 @@ a:hover {
     .file-table td {
         font-size: 12px;
         padding: 6px 4px;
+    }
+    .file-table td:first-child {
+        max-width: calc(100% - 80px);
+    }
+    .file-name {
+        font-size: 13px;
+    }
+    .file-icon {
+        font-size: 14px;
+        margin-right: 6px;
+    }
+    .repository-title {
+        font-size: 20px;
+    }
+    .path-navigation {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    .path-link, .current-path {
+        font-size: 12px;
+        padding: 2px 4px;
+    }
+    .empty-state {
+        padding: 40px 10px;
+    }
+    .empty-state-icon {
+        font-size: 28px;
+    }
+    .empty-state-title {
+        font-size: 16px;
+    }
+}
+@media (max-width: 360px) {
+    .file-table th,
+    .file-table td {
+        font-size: 11px;
+        padding: 5px 3px;
+    }
+    .file-name {
+        font-size: 12px;
+    }
+    .file-icon {
+        font-size: 12px;
+        margin-right: 4px;
+    }
+    .repository-title {
+        font-size: 18px;
+    }
+    .path-navigation {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    .path-link, .current-path {
+        font-size: 11px;
+        padding: 1px 3px;
+    }
+    .empty-state {
+        padding: 30px 5px;
+    }
+    .empty-state-icon {
+        font-size: 24px;
+    }
+    .empty-state-title {
+        font-size: 14px;
+    }
+}
+
+/* Nuovi stili per il layout della tabella su schermi piccoli */
+@media (max-width: 480px) {
+    .file-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .file-table thead {
+        display: none;
+    }
+    
+    .file-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #e1e4e8;
+        border-radius: 6px;
+        padding: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .file-table td {
+        display: block;
+        text-align: right;
+        padding: 5px 0;
+        border: none;
+        font-size: 13px;
+    }
+    
+    .file-table td:before {
+        content: attr(data-label) ": ";
+        float: left;
+        font-weight: bold;
+        color: #24292e;
+    }
+    
+    .file-table td:first-child {
+        text-align: left;
+        font-weight: 600;
+        max-width: 100%;
+    }
+    
+    .file-table td:first-child:before {
+        content: "";
+    }
+    
+    .file-name {
+        font-size: 14px;
+        justify-content: flex-start;
+    }
+    
+    .folder-row {
+        background-color: rgba(3, 102, 214, 0.03);
+    }
+    
+    .folder-row:hover {
+        background-color: rgba(3, 102, 214, 0.08);
     }
 }

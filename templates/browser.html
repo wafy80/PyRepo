@@ -5,6 +5,7 @@
   <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="file-repository">
@@ -31,26 +32,52 @@
         {% if entries|length == 0 %}
         <tr>
           <td colspan="3" class="empty-state">
-            <div class="empty-state-icon">📁</div>
+            <div class="empty-state-icon"><i class="fas fa-folder-open"></i></div>
             <div class="empty-state-title">Nessun file o cartella</div>
           </td>
         </tr>
         {% endif %}
         {% for name, is_dir, size, mtime in entries %}
         <tr class="{{ 'folder-row' if is_dir else '' }}">
-          <td>
+          <td data-label="Name">
             {% if is_dir %}
               <a class="file-name folder-name" href="{{ url_for('browse', root_idx=root_idx, subpath=(rel_path ~ '/' ~ name if rel_path else name)) }}">
-                <span class="file-icon folder-icon">📁</span>{{ name }}/
+                <span class="file-icon folder-icon"><i class="fas fa-folder"></i></span>{{ name }}/
               </a>
             {% else %}
+              <!-- Determina l'icona in base all'estensione del file -->
+              {% set ext = name.split('.')[-1].lower() if '.' in name else '' %}
               <a class="file-name" href="{{ url_for('download_file', root_idx=root_idx, subpath=(rel_path ~ '/' ~ name if rel_path else name)) }}">
-                <span class="file-icon file-icon-default">📄</span>{{ name }}
+                <span class="file-icon file-icon-default">
+                  {% if ext in ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'] %}
+                    <i class="fas fa-file-image"></i>
+                  {% elif ext in ['pdf'] %}
+                    <i class="fas fa-file-pdf"></i>
+                  {% elif ext in ['doc', 'docx'] %}
+                    <i class="fas fa-file-word"></i>
+                  {% elif ext in ['xls', 'xlsx'] %}
+                    <i class="fas fa-file-excel"></i>
+                  {% elif ext in ['ppt', 'pptx'] %}
+                    <i class="fas fa-file-powerpoint"></i>
+                  {% elif ext in ['txt', 'md', 'rst'] %}
+                    <i class="fas fa-file-alt"></i>
+                  {% elif ext in ['zip', 'rar', '7z', 'tar', 'gz'] %}
+                    <i class="fas fa-file-archive"></i>
+                  {% elif ext in ['mp3', 'wav', 'ogg', 'flac'] %}
+                    <i class="fas fa-file-audio"></i>
+                  {% elif ext in ['mp4', 'avi', 'mov', 'mkv', 'wmv'] %}
+                    <i class="fas fa-file-video"></i>
+                  {% elif ext in ['py', 'js', 'html', 'css', 'java', 'cpp', 'c', 'h', 'hpp', 'php', 'rb', 'go', 'rs', 'swift', 'kt', 'ts', 'jsx', 'tsx'] %}
+                    <i class="fas fa-file-code"></i>
+                  {% else %}
+                    <i class="fas fa-file"></i>
+                  {% endif %}
+                </span>{{ name }}
               </a>
             {% endif %}
           </td>
-          <td class="file-size">{% if not is_dir %}{{ size }}{% else %}-{% endif %}</td>
-          <td class="file-date">{{ mtime }}</td>
+          <td data-label="Size" class="file-size">{% if not is_dir %}{{ size }}{% else %}-{% endif %}</td>
+          <td data-label="Date" class="file-date">{{ mtime }}</td>
         </tr>
         {% endfor %}
       </tbody>
